@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title |default('Titre par defaut') }}{% endblock %}
+
+{% block body %}
+
+<div class="example-wrapper">
+    <h1>{{ title |upper|default('Titre par defaut') }}</h1>
+
+    <p>Date du jour : {{ "now" | date("d/m/Y H:i") }}</p>
+
+    <h2> Liste des utilisateurs</h2>
+
+
+    {% if users is not empty %}
+        <ul>
+            {% for user in users %}
+                <li>
+                    <strong>{{ loop.index }}</strong>
+                    {{ user.name|capitalize }}  ({{ user.email|lower }})
+                {% if user.age >= 18 %}
+                    - Majeur
+                {% else %}
+                    - Mineur
+                {% endif %}
+                 <a href="{{ path('user_details', {
+                     name: user.name,
+                     email: user.email,
+                     age: user.age
+                 }) }}">Void details</a>
+                </li>
+
+            {% endfor %}
+        </ul>
+    {% else %}
+        <li>
+            Aucun utilisateur
+        </li>
+    {% endif %}
+</div>
+{% endblock %}

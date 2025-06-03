@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ title  }}{% endblock %}
+
+{% block body %}
+
+    <div class="example-wrapper">
+        <h1>{{ title |upper }}</h1>
+            <ul>
+                <li><strong> Nom: </strong> {{ name }}</li>
+                <li><strong> Email: </strong> {{ email }}</li>
+                <li><strong> Age: </strong> {{ age }}</li>
+            </ul>
+    </div>
+
+<p> <a href="{{ path('app_user') }}" class="btn btn-primary">Retour à la liste</a></p>
+{% endblock %}
